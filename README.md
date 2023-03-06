@@ -6,11 +6,14 @@
 
 - [About](#about)
 - [Features](#features)
-- [Usage](#usage)
-- [Documentation](#documentation)
 - [License](#license)
 - [Contributing](#contributing)
-- [TODO](#todo)
+  - [Building](#building)
+- [Usage](#usage)
+  - [Adding the library to your project](#adding-the-library-to-your-project)
+  - [Creating a DatabaseManager](#creating-a-databasemanager)
+  - [Building and Executing a Query](#building-and-executing-a-query)
+  - [ORM](#orm)
 
 ## About
 
@@ -143,9 +146,9 @@ the chance of making a mistake.
 ```java
 // -- Create a new SelectQuery with a builder
 SelectQuery selectQuery = SelectQuery.builder()
-        .table("users")
-        .columns("name", "age")
-        .where("name = ?")
+        .setTable("users")
+        .setColumns("name", "age")
+        .setWhere("name = ?")
         .build();
 
 // -- Then, we can execute the query using the DatabaseManager
@@ -159,8 +162,11 @@ databaseManager.executeQuery(selectQuery, resultSet -> {
 ```java
 // -- Create a new InsertQuery with a builder
 InsertQuery insertQuery = InsertQuery.builder()
-        .table("users")
-        .columns("name", "age")
+        .setTable("users")
+        .setColumns(
+                new ColumnValuePair("name", "John"),
+                new ColumnValuePair("age", 20)
+        )
         .build();
 
 // -- Then, we can execute the query using the DatabaseManager
@@ -189,12 +195,12 @@ public class User {
 
     @DatabaseColumn(name = "id", type = "INT", primaryKey = true, autoIncrement = true, notNull = true, unique = true)
     private final int id;
-    
+
     @DatabaseColumn(name = "name", type = "VARCHAR(16)", notNull = true, unique = true)
     private String name;
-    
-    @DatabaseColumn(name = "birthDate", type = "DATE", notNull = true)
-    private LocalDate birthDate;
+
+    @DatabaseColumn(name = "age", type = "INT", unsigned = true)
+    private int age;
 
     // ...
 }
@@ -206,13 +212,11 @@ For this, we will need the `DatabaseManager` that we created earlier.
 
 ```java
 // -- Create a new User object
-User user = new User(1, "John Doe", LocalDate.of(1990, 1, 1));
+User user = new User(0, "John", 20);
 
 // -- Save the user to the database
-databaseManager.insertObject(user);
+databaseManager.saveObject(user, true);
 
 // -- Load the user from the database
-User loadedUser = databaseManager.loadObject(User.class, 1);
+        List<User> loadedUsers = databaseManager.loadORMObjects(User.class, (builder) -> builder.setWhere("name = ?").setValues("John"));
 ```
-
-TODO: rework ORM
