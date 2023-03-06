@@ -1,11 +1,5 @@
 # Drop Database
 
-[![Build Status](https://travis-ci.org/d0by/drop-database.svg?branch=master)](https://travis-ci.org/d0by/drop-database)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b)](https://www.codacy.com/app/d0by/drop-database?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=d0by/drop-database&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b)](https://www.codacy.com/app/d0by/drop-database?utm_source=github.com&utm_medium=referral&utm_content=d0by/drop-database&utm_campaign=Badge_Coverage)
-[![JitPack](https://jitpack.io/v/d0by/drop-database.svg)](https://jitpack.io/#d0by/drop-database)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
 > Java Library for connecting to and working with various SQL databases.
 
 ## Table of Contents
