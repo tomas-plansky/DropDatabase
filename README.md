@@ -218,5 +218,5 @@ User user = new User(0, "John", 20);
 databaseManager.saveObject(user, true);
 
 // -- Load the user from the database
-        List<User> loadedUsers = databaseManager.loadORMObjects(User.class, (builder) -> builder.setWhere("name = ?").setValues("John"));
+List<User> loadedUsers = databaseManager.loadORMObjects(User.class, (builder) -> builder.setWhere("name = ?").setValues("John"));
 ```
