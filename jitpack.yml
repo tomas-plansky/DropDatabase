@@ -1,0 +1,6 @@
+jdk:
+  - openjdk8
+install:
+  - 'mvn install -DskipTests=true -Pjitpack -Dmaven.javadoc.skip=true -B -V'
+env:
+  ARTIFACT: 'drop-database'
